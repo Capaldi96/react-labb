@@ -6,28 +6,29 @@ const DetailedView = ({person}) => {
     const [error, setError] = useState();
     const [homeWorld, setHomeWorld] = useState(null);
     const [movies, setMovies] = useState([]);
-
+    console.log(person)
     useEffect(()=>{
         let mounted = true;
         setIsLoaded(true);
-        const fetchHomeWorld = async () =>{   
-            try{     
-                let result = await axios(person.homeworld);
-                if(!mounted) return;
-                setHomeWorld(result.data.name)
+        const fetchHomeWorld = async () =>{  
+            if(person.homeworld){ 
+                try{     
+                    let result = await axios(person.homeworld);
+                    if(!mounted) return;
+                    setHomeWorld(result.data.name)
+                }
+                catch(e){
+                    setError(e);
+                    console.log(error)
+                }
+                setIsLoaded(false);
             }
-            catch(e){
-                setError(e);
-                console.log(error)
-            }
-            setIsLoaded(false);
         }
         fetchHomeWorld();
         return () => {
             mounted = false;
         };
-    },[])
-    
+    },[error, person.homeworld])
     useEffect(()=>{
         let mounted = true;
         const fetchMovies = async () =>{   
@@ -47,7 +48,7 @@ const DetailedView = ({person}) => {
         return () => {
             mounted = false;
         };
-    },[])
+    },[person.films])
 
     const movieList = movies.map(movie =>(
         <p key={movie}>{movie}</p>
@@ -56,23 +57,42 @@ const DetailedView = ({person}) => {
         return <div>{error}</div>
     if(isLoaded === true)
         return <div className="loader"></div>
-    else
-        return (
+    else{
+        if(person.height)
+            return (
             <div className="detailed-card">
                 <h2>{person.name}</h2>
                 <div className="detailed-grid">
                     <div>Birth year: <p>{person.birth_year}</p></div>
-                    <div>Height: <p>{person.height}</p></div>
+                    <div>Height: <p>{person.height} cm</p></div>
                     <div>Hair color: <p>{person.hair_color}</p></div>
                     <div>Eye color: <p>{person.eye_color}</p></div>
                     <div>Skin color: <p>{person.skin_color}</p></div>
                     <div>Gender: <p>{person.gender}</p></div>
-                    <div>Mass: <p>{person.mass}</p></div>
+                    <div>Mass: <p>{person.mass} kg</p></div>
                     <div>Homeworld: <p>{homeWorld}</p></div>
                     <div>Movies: <div>{movieList}</div></div>
                 </div>
                 
             </div>
         )
+        else return (
+            <div className="detailed-card">
+            <h2>{person.name}</h2>
+            <div className="detailed-grid">
+                <div>Climate: <p>{person.climate}</p></div>
+                <div>Diameter: <p>{person.diameter}</p></div>
+                <div>Gravity: <p>{person.gravity}</p></div>
+                <div>Orbital period: <p>{person.orbital_period}</p></div>
+                <div>Population: <p>{person.population}</p></div>
+                <div>Rotation period: <p>{person.rotation_period}</p></div>
+                <div>Surface water: <p>{person.surface_water}</p></div>
+                <div>Terrain: <p>{person.terrain}</p></div>
+                <div>Movies: <div>{movieList}</div></div>
+            </div>
+            
+        </div>
+        )
+    }
 }
 export default DetailedView;

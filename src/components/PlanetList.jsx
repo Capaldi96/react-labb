@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 
-const PlanetList = ({setFavoritePlanets}) => {
+const PlanetList = ({setFavoritePlanets, favoritePlanets, changeScreen}) => {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [planetList, setPlanetList] = useState([]);
@@ -20,10 +20,13 @@ const PlanetList = ({setFavoritePlanets}) => {
         setSearchValue(e.target.value);
     };
     const detailedHandler = (planet) =>{
+        changeScreen(planet);
+
     }
     
     const addToFav = (event, planet) => {
         event.stopPropagation();
+        if(!favoritePlanets.includes(planet))
         setFavoritePlanets(planet);
     }
     useEffect(()=>{
@@ -35,11 +38,13 @@ const PlanetList = ({setFavoritePlanets}) => {
                 if(!mounted) return;
                 setPlanetList(result.data.results);
                 setFilteredList(result.data.results)
+                let count = 2;
                 while(result.data.next !== null){
-                    result = await axios(result.data.next)
+                    result = await axios(`https://swapi.dev/api/planets/?page=${count}`)
                     if(!mounted) return;
-                    setPlanetList(planetList => planetList.concat(result.data.results));
-                    setFilteredList(filteredList => filteredList.concat(result.data.results))
+                    setPlanetList([...planetList, result.data.results]);
+                    setFilteredList([...filteredList, result.data.results]);
+                    count++;
                 }
             } catch(e){
                 setError(e);
@@ -50,7 +55,7 @@ const PlanetList = ({setFavoritePlanets}) => {
         return () => {
             mounted = false;
         };
-    },[])
+    },[filteredList, planetList])
     const cards = filteredList.map((item, index) =>(
         <div className="card" key={item.name+index} onClick={()=>detailedHandler(item)}>
             <section>
@@ -80,4 +85,4 @@ const PlanetList = ({setFavoritePlanets}) => {
         )
 }
 
-export default PlanetList
+export default PlanetList;

@@ -13,7 +13,6 @@ function App() {
   const [favoritePeople, setFavoritePeople] = useState([]);
   const [favoritePlanets, setFavoritePlanets] = useState([]);
 
-  console.log(favoritePlanets);
   let content= null;
   switch(currentScreen){
     case 'welcomeScreen':
@@ -23,7 +22,7 @@ function App() {
       break;
     case 'peopleScreen':
       content = (
-        <PeopleList changeScreen={(param) => {setCurrentScreen('detailedScreen'); setDetailedPerson(param)}} setFavoritePeople={(person) => {setFavoritePeople(favoritePeople => favoritePeople.concat(person))}}></PeopleList>
+        <PeopleList changeScreen={(param) => {setCurrentScreen('detailedScreen'); setDetailedPerson(param)}} setFavoritePeople={(person) => {setFavoritePeople(favoritePeople => favoritePeople.concat(person))}} favoritePeople={favoritePeople}></PeopleList>
       )
       break;
     case 'favoriteScreen':
@@ -33,7 +32,7 @@ function App() {
       break;
     case 'planetScreen':
       content = (
-        <PlanetList setFavoritePlanets={(planet) => {setFavoritePlanets(favoritePlanets =>  favoritePlanets.concat(planet))}}></PlanetList>
+        <PlanetList changeScreen={(param) => {setCurrentScreen('detailedScreen'); setDetailedPerson(param)}} setFavoritePlanets={(planet) => {setFavoritePlanets(favoritePlanets =>  favoritePlanets.concat(planet))}} favoritePlanets={favoritePlanets}></PlanetList>
       )
       break;
     case 'detailedScreen':
@@ -57,7 +56,7 @@ function App() {
         <button onClick={() => setCurrentScreen('favoriteScreen')}>My favorites</button>
         <button onClick={() => setCurrentScreen('peopleScreen')}>List people </button>
         <button onClick={() => setCurrentScreen('planetScreen')}>List planets </button>
-        <button onClick={() => setCurrentScreen('createScreen')}>Add  </button>
+        <button onClick={() => setCurrentScreen('createScreen')}>Add</button>
         </div>
       </header>
       <main>
