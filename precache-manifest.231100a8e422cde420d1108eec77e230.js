@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2e27d27df3a46e188b149d8bb94986e5",
+    "revision": "514efe6760ad7807c3c75858bcdc35f9",
     "url": "/react-labb/index.html"
   },
   {
-    "revision": "ae35b870ae564c96b9eb",
-    "url": "/react-labb/static/css/main.089b55ea.chunk.css"
+    "revision": "97f420b24a58964a5fd2",
+    "url": "/react-labb/static/css/main.d3bab389.chunk.css"
   },
   {
     "revision": "7c111ab25efaae2f6a26",
@@ -16,11 +16,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-labb/static/js/2.1911ee3a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "ae35b870ae564c96b9eb",
-    "url": "/react-labb/static/js/main.3a4c44d0.chunk.js"
+    "revision": "97f420b24a58964a5fd2",
+    "url": "/react-labb/static/js/main.9bd40464.chunk.js"
   },
   {
     "revision": "07def9344a0b1cf6ecfe",
     "url": "/react-labb/static/js/runtime-main.e1333319.js"
+  },
+  {
+    "revision": "d5aa72aacfcdc8e2d7b0d0c49dfede6c",
+    "url": "/react-labb/static/media/star-wars-background.d5aa72aa.jpg"
   }
 ]);
