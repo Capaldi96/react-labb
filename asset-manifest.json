@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/react-labb/static/css/main.6b20d165.chunk.css",
-    "main.js": "/react-labb/static/js/main.4088249f.chunk.js",
-    "main.js.map": "/react-labb/static/js/main.4088249f.chunk.js.map",
+    "main.css": "/react-labb/static/css/main.82b87353.chunk.css",
+    "main.js": "/react-labb/static/js/main.95ceadb0.chunk.js",
+    "main.js.map": "/react-labb/static/js/main.95ceadb0.chunk.js.map",
     "runtime-main.js": "/react-labb/static/js/runtime-main.e1333319.js",
     "runtime-main.js.map": "/react-labb/static/js/runtime-main.e1333319.js.map",
     "static/js/2.c27d53aa.chunk.js": "/react-labb/static/js/2.c27d53aa.chunk.js",
     "static/js/2.c27d53aa.chunk.js.map": "/react-labb/static/js/2.c27d53aa.chunk.js.map",
     "index.html": "/react-labb/index.html",
-    "precache-manifest.83dc87bd29bfc78f72931382942e841e.js": "/react-labb/precache-manifest.83dc87bd29bfc78f72931382942e841e.js",
+    "precache-manifest.ae4f9dd068e8e3d444a74c1930c9cd06.js": "/react-labb/precache-manifest.ae4f9dd068e8e3d444a74c1930c9cd06.js",
     "service-worker.js": "/react-labb/service-worker.js",
-    "static/css/main.6b20d165.chunk.css.map": "/react-labb/static/css/main.6b20d165.chunk.css.map",
+    "static/css/main.82b87353.chunk.css.map": "/react-labb/static/css/main.82b87353.chunk.css.map",
     "static/js/2.c27d53aa.chunk.js.LICENSE.txt": "/react-labb/static/js/2.c27d53aa.chunk.js.LICENSE.txt",
     "static/media/App.css": "/react-labb/static/media/star-wars-background.d5aa72aa.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.e1333319.js",
     "static/js/2.c27d53aa.chunk.js",
-    "static/css/main.6b20d165.chunk.css",
-    "static/js/main.4088249f.chunk.js"
+    "static/css/main.82b87353.chunk.css",
+    "static/js/main.95ceadb0.chunk.js"
   ]
 }
