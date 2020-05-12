@@ -105,6 +105,7 @@ const Create = ({setFavoritePeople, changeScreen}) => {
                     onChange={event => setHeight(event.target.value)}
                     onBlur={event => setHeightIsTouched(true)} /> <br/>
             </div>
+            <span>(All fields must have a value)</span>
             <button disabled={isDisabled} onClick={()=> submitHandler()}>Submit</button>
         </div>
     )
