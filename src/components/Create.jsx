@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 
-const Create = ({setFavoritePeople, changeScreen}) => {
+const Create = ({setFavoritePeople, changeScreen, favoritePeople}) => {
     const [name, setName] = useState('');
     const [skinColor, setSkinColor] = useState('');
     const [eyeColor, setEyeColor] = useState('');
@@ -11,13 +11,11 @@ const Create = ({setFavoritePeople, changeScreen}) => {
     const [heightIsTouched, setHeightIsTouched] = useState(false);
     const [isDisabled, setIsDisabled] = useState(true);
 
-
-
     useEffect(() => {
         let mounted = true
-        if(name.length === 0 || skinColor.length === 0 || height.length === 0 || eyeColor.length === 0){
+        if(name.length === 0 || skinColor.length === 0 || height.length === 0 || eyeColor.length === 0 || favoritePeople.some(person => person.name.toLowerCase() === name.toLowerCase())){
             if(!mounted) return;
-            setIsDisabled(true)
+            setIsDisabled(true);
         }
         else{
             if(!mounted) return;
@@ -27,9 +25,9 @@ const Create = ({setFavoritePeople, changeScreen}) => {
         return () => {
             mounted = false;
         }
-    }, [name, skinColor, eyeColor, height])
+    }, [name, skinColor, eyeColor, height, favoritePeople])
     
-    const submitHandler = () =>{
+    const submitHandler = (event) =>{
         
         let newCharacter = [{
             name: name,
@@ -38,6 +36,8 @@ const Create = ({setFavoritePeople, changeScreen}) => {
             height: height,
             fake: 'Fantasy character'
         }];
+    
+
         setFavoritePeople(newCharacter);
         changeScreen();
     }
@@ -74,7 +74,7 @@ const Create = ({setFavoritePeople, changeScreen}) => {
         <div className="create-box">
             <h2>Create your own favorite character</h2>
             <div>
-                Name: 
+                Name (Cant exist already): 
                 <input type="text"
                     value={name}
                     className={nameValidate}
@@ -105,8 +105,8 @@ const Create = ({setFavoritePeople, changeScreen}) => {
                     onChange={event => setHeight(event.target.value)}
                     onBlur={event => setHeightIsTouched(true)} /> <br/>
             </div>
-            <span>(All fields must have a value)</span>
-            <button disabled={isDisabled} onClick={()=> submitHandler()}>Submit</button>
+            <span>(All fields must be filled)</span>
+            <button disabled={isDisabled} onClick={(e)=> submitHandler(e)}>Submit</button>
         </div>
     )
 }

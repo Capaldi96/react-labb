@@ -42,7 +42,7 @@ function App() {
       break;
     case 'createScreen':
         content = (
-          <Create changeScreen={() => setCurrentScreen('favoriteScreen')} setFavoritePeople={(person) => {setFavoritePeople(favoritePeople => favoritePeople.concat(person))}}></Create>
+          <Create changeScreen={() => setCurrentScreen('favoriteScreen')} setFavoritePeople={(person) => {setFavoritePeople(favoritePeople => favoritePeople.concat(person))}} favoritePeople={favoritePeople}></Create>
         )
         break;
     default:
