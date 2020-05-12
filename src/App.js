@@ -8,7 +8,7 @@ import DetailedView from './components/DetailedView';
 import Create from './components/Create';
 
 function App() {
-  const [currentScreen, setCurrentScreen] = useState('peopleScreen');
+  const [currentScreen, setCurrentScreen] = useState('welcomeScreen');
   const [detailedPerson, setDetailedPerson] = useState(null);
   const [favoritePeople, setFavoritePeople] = useState([]);
   const [favoritePlanets, setFavoritePlanets] = useState([]);
@@ -42,7 +42,7 @@ function App() {
       break;
     case 'createScreen':
         content = (
-          <Create setFavoritePeople={(person) => {setFavoritePeople(favoritePeople => favoritePeople.concat(person))}}></Create>
+          <Create changeScreen={() => setCurrentScreen('favoriteScreen')} setFavoritePeople={(person) => {setFavoritePeople(favoritePeople => favoritePeople.concat(person))}}></Create>
         )
         break;
     default:

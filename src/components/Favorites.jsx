@@ -15,7 +15,7 @@ const Favorites = ({changeScreen, favoritePeople, favoritePlanets, setFavoritePe
         setCombinedList([...favoritePeople, ...favoritePlanets]);
         setFilteredCombined([...favoritePeople, ...favoritePlanets]);
         setIsLoaded(false);
-    },[favoritePeople, favoritePlanets, filteredPeople, filteredPlanets])
+    },[])
     
 
     const detailedHandler = (person) =>{
@@ -46,7 +46,6 @@ const Favorites = ({changeScreen, favoritePeople, favoritePlanets, setFavoritePe
     };
     const searchBoth = (e) => {
         const results = combinedList.filter(item => {
-            console.log(item)
             if(item.skin_color)
                 return (
                     item.name.toLowerCase().includes(e.target.value.toLowerCase())|| 
@@ -85,7 +84,8 @@ const Favorites = ({changeScreen, favoritePeople, favoritePlanets, setFavoritePe
     const peopleCards = filteredPeople.map((item, index) =>(
         <div className="card" key={item.name} onClick={() => detailedHandler(item)}>
             <h2>{item.name}</h2>
-            <p>Height: {item.height}</p>
+            <p>{item.fake}</p>
+            <p>Height: {item.height} cm</p>
             <p>Eye color: {item.eye_color}</p>
             <p>Skin color: {item.skin_color}</p>
             <button onClick={(e)=>removeFavPeople(e,item)}>Remove from favorites</button>
@@ -115,6 +115,7 @@ const Favorites = ({changeScreen, favoritePeople, favoritePlanets, setFavoritePe
         else return (
             <div className="card" key={item.name} onClick={() => detailedHandler(item)}>
             <h2>{item.name}</h2>
+            <p>{item.fake}</p>
             <p>Height: {item.height} cm</p>
             <p>Eye color: {item.eye_color}</p>
             <p>Skin color: {item.skin_color}</p>

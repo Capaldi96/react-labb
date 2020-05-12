@@ -42,8 +42,8 @@ const PlanetList = ({setFavoritePlanets, favoritePlanets, changeScreen}) => {
                 while(result.data.next !== null){
                     result = await axios(`https://swapi.dev/api/planets/?page=${count}`)
                     if(!mounted) return;
-                    setPlanetList([...planetList, result.data.results]);
-                    setFilteredList([...filteredList, result.data.results]);
+                    setPlanetList(planetList => planetList.concat(result.data.results));
+                    setFilteredList(filteredList => filteredList.concat(result.data.results))
                     count++;
                 }
             } catch(e){
@@ -55,7 +55,7 @@ const PlanetList = ({setFavoritePlanets, favoritePlanets, changeScreen}) => {
         return () => {
             mounted = false;
         };
-    },[filteredList, planetList])
+    },[])
     const cards = filteredList.map((item, index) =>(
         <div className="card" key={item.name+index} onClick={()=>detailedHandler(item)}>
             <section>

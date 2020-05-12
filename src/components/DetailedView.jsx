@@ -6,14 +6,14 @@ const DetailedView = ({person}) => {
     const [error, setError] = useState();
     const [homeWorld, setHomeWorld] = useState(null);
     const [movies, setMovies] = useState([]);
-    console.log(person)
+    
     useEffect(()=>{
         let mounted = true;
         setIsLoaded(true);
         const fetchHomeWorld = async () =>{  
             if(person.homeworld){ 
                 try{     
-                    let result = await axios(person.homeworld);
+                    let result = await axios(person.homeworld.slice(0,4) + 's' + person.homeworld.slice(4));
                     if(!mounted) return;
                     setHomeWorld(result.data.name)
                 }
@@ -34,7 +34,8 @@ const DetailedView = ({person}) => {
         const fetchMovies = async () =>{   
             try{     
                 for(let i = 0; i < person.films.length; i++){ 
-                    let result = await axios(person.films[i]);
+                    let result = await axios(person.films[i].slice(0,4) + 's' + person.films[i].slice(4));
+                    // lägger till ett s på http så det blir HTTPS
                     if(!mounted) return;
                     setMovies(movies => movies.concat(result.data.title));
                 }

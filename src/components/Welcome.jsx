@@ -5,8 +5,9 @@ const Welcome = ({changeScreen}) => {
         <div className="wrapper">
             <div className="welcome-screen">
                 <h1>Welcome!</h1>
-                <p>Press the button to get started! </p>
-                <button className="welcome-button" onClick={changeScreen}>Get Started</button>
+                <p>See characters you want?</p>
+                <p>Click button you must!</p>
+                <button className="welcome-button" onClick={changeScreen}>Character list</button>
             </div>
         </div>
     )

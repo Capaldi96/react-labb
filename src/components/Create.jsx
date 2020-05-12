@@ -1,16 +1,33 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
-const Create = ({setFavoritePeople}) => {
+const Create = ({setFavoritePeople, changeScreen}) => {
     const [name, setName] = useState('');
     const [skinColor, setSkinColor] = useState('');
     const [eyeColor, setEyeColor] = useState('');
     const [height, setHeight] = useState('');
-    const [touched, setTouched] = useState(false);
+    const [nameIsTouched, setNameIsTouched] = useState(false);
+    const [skinIsTouched, setSkinIsTouched] = useState(false);
+    const [eyeIsTouched, setEyeIsTouched] = useState(false);
+    const [heightIsTouched, setHeightIsTouched] = useState(false);
     const [isDisabled, setIsDisabled] = useState(true);
 
 
-    let cssClass = '';
 
+    useEffect(() => {
+        let mounted = true
+        if(name.length === 0 || skinColor.length === 0 || height.length === 0 || eyeColor.length === 0){
+            if(!mounted) return;
+            setIsDisabled(true)
+        }
+        else{
+            if(!mounted) return;
+            setIsDisabled(false)
+        }
+
+        return () => {
+            mounted = false;
+        }
+    }, [name, skinColor, eyeColor, height])
     
     const submitHandler = () =>{
         
@@ -18,16 +35,40 @@ const Create = ({setFavoritePeople}) => {
             name: name,
             skin_color: skinColor,
             eye_color: eyeColor,
-            height: height
+            height: height,
+            fake: 'Fantasy character'
         }];
-        setFavoritePeople(newCharacter)
+        setFavoritePeople(newCharacter);
+        changeScreen();
     }
 
-    if( touched ) {
-        if( isDisabled )
-            cssClass = 'valid';
+    let nameValidate = '';
+    let skinValidate = '';
+    let eyeValidate = '';
+    let heightValidate = '';
+    if( nameIsTouched ) {
+        if(name.length === 0)
+            nameValidate = 'invalid';
         else
-            cssClass = 'invalid';
+            nameValidate = 'valid';
+    }
+    if( skinIsTouched ) {
+        if(skinColor.length === 0)
+            skinValidate = 'invalid';
+        else
+            skinValidate = 'valid';
+    }
+    if(eyeIsTouched){
+        if(eyeColor.length === 0)
+            eyeValidate = 'invalid';
+        else
+            eyeValidate = 'valid';
+    }
+    if( heightIsTouched ) {
+        if(height.length === 0)
+            heightValidate = 'invalid';
+        else
+            heightValidate = 'valid';
     }
     return (
         <div className="create-box">
@@ -36,35 +77,35 @@ const Create = ({setFavoritePeople}) => {
                 Name: 
                 <input type="text"
                     value={name}
-                    className={cssClass}
+                    className={nameValidate}
                     onChange={event => setName(event.target.value)}
-                    onBlur={event => setTouched(true)} /> <br/>
+                    onBlur={event => setNameIsTouched(true)} /> <br/>
             </div>
             <div>
                 Skin color: 
                 <input type="text"
                     value={skinColor}
-                    className={cssClass}
+                    className={skinValidate}
                     onChange={event => setSkinColor(event.target.value)}
-                    onBlur={event => setTouched(true)} /> <br/>
+                    onBlur={event => setSkinIsTouched(true)} /> <br/>
             </div>
             <div>
                 Eye color: 
                 <input type="text"
                     value={eyeColor}
-                    className={cssClass}
+                    className={eyeValidate}
                     onChange={event => setEyeColor(event.target.value)}
-                    onBlur={event => setTouched(true)} /> <br/>
+                    onBlur={event => setEyeIsTouched(true)} /> <br/>
             </div>
             <div>
                 Height (cm): 
-                <input type="text"
+                <input type="number"
                     value={height}
-                    className={cssClass}
+                    className={heightValidate}
                     onChange={event => setHeight(event.target.value)}
-                    onBlur={event => setTouched(true)} /> <br/>
+                    onBlur={event => setHeightIsTouched(true)} /> <br/>
             </div>
-            <button onClick={()=> submitHandler()}>Submit</button>
+            <button disabled={isDisabled} onClick={()=> submitHandler()}>Submit</button>
         </div>
     )
 }
