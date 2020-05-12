@@ -13,7 +13,7 @@ const Create = ({setFavoritePeople, changeScreen, favoritePeople}) => {
 
     useEffect(() => {
         let mounted = true
-        if(name.length === 0 || skinColor.length === 0 || height.length === 0 || eyeColor.length === 0 || favoritePeople.some(person => person.name.toLowerCase() === name.toLowerCase())){
+        if(name.length < 2 || skinColor.length < 3 || height.length === 0 || eyeColor.length < 3 || favoritePeople.some(person => person.name.toLowerCase() === name.toLowerCase())){
             if(!mounted) return;
             setIsDisabled(true);
         }
@@ -74,24 +74,30 @@ const Create = ({setFavoritePeople, changeScreen, favoritePeople}) => {
         <div className="create-box">
             <h2>Create your own favorite character</h2>
             <div>
-                Name (Cant exist already): 
+                Name (Atleast 2 characters and unique): 
                 <input type="text"
+                    maxLength="20"
+                    minLength="2"
                     value={name}
                     className={nameValidate}
                     onChange={event => setName(event.target.value)}
                     onBlur={event => setNameIsTouched(true)} /> <br/>
             </div>
             <div>
-                Skin color: 
+                Skin color (Atleast 3 characters): 
                 <input type="text"
+                    maxLength="20"
+                    minLength="3"
                     value={skinColor}
                     className={skinValidate}
                     onChange={event => setSkinColor(event.target.value)}
                     onBlur={event => setSkinIsTouched(true)} /> <br/>
             </div>
             <div>
-                Eye color: 
+                Eye color (Atleast 3 characters): 
                 <input type="text"
+                    maxLength="20"
+                    minLength="3"
                     value={eyeColor}
                     className={eyeValidate}
                     onChange={event => setEyeColor(event.target.value)}

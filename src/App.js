@@ -37,7 +37,7 @@ function App() {
       break;
     case 'detailedScreen':
       content = (
-        <DetailedView person={detailedPerson}></DetailedView>
+        <DetailedView person={detailedPerson} changeScreen={(param) => {setCurrentScreen(param)}} ></DetailedView>
       )
       break;
     case 'createScreen':

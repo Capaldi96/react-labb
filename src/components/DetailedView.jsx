@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 
-const DetailedView = ({person}) => {
+const DetailedView = ({person,changeScreen}) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState();
     const [homeWorld, setHomeWorld] = useState(null);
@@ -62,6 +62,7 @@ const DetailedView = ({person}) => {
         if(person.height)
             return (
             <div className="detailed-card">
+                <button onClick={()=> changeScreen('peopleScreen')}>Go back</button>
                 <h2>{person.name}</h2>
                 <div className="detailed-grid">
                     <div>Birth year: <p>{person.birth_year}</p></div>
@@ -79,6 +80,7 @@ const DetailedView = ({person}) => {
         )
         else return (
             <div className="detailed-card">
+            <button onClick={()=> changeScreen('planetScreen')}>Go back</button>
             <h2>{person.name}</h2>
             <div className="detailed-grid">
                 <div>Climate: <p>{person.climate}</p></div>

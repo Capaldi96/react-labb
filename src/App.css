@@ -189,7 +189,7 @@ button:enabled:hover {
   flex-direction: row-reverse;
 }
 .search-input{
-  width: 5.4em;
+  width: 10em;
   box-sizing: border-box;
   border-radius: 2em;
   border:none;
@@ -201,7 +201,6 @@ button:enabled:hover {
   transition: width 0.4s ease-in-out;
 }
 .search-input:focus {
-  outline: 0;
   width: 40%;
   box-shadow:0 0 5px #fff,0 0 8px #fff,0 0 12px #fff,0 0 30px green,0 0 50px green;
 }
